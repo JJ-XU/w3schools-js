@@ -7,6 +7,11 @@
 <body>
 <h1>JS介绍</h1>
 <p id="demo1">hello JS!</p>
-<button type="button" onclick='document.getElementById("demo1").innerHTML="hello AtlasData!"'>click me</button>
+<button type="button" onclick='showchange()'>click me</button>
+ <script>
+    function showchange(){
+        document.getElementById("demo1").innerHTML="hello AtlasData!"
+    }
+ </script>
 </body>
 </html>

@@ -2,16 +2,25 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>JS介绍</title>
+    <title>JS练习</title>
 </head>
 <body>
 <h1>JS介绍</h1>
 <p id="demo1">hello JS!</p>
 <button type="button" onclick='showchange()'>click me</button>
- <script>
+<button type="button" onclick='showtry()'>try it</button>
+<script>
     function showchange(){
         document.getElementById("demo1").innerHTML="hello AtlasData!"
     }
- </script>
+
+    function showtry(){
+      if(confirm("你将被改变")){
+             document.write("hello AtlasData!");
+       }
+   }
+    var p=document.getElementById("demo1");
+    console.log(p.innerText);
+</script>
 </body>
 </html>

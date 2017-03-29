@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8" />
-    <title>JS练习</title>
-</head>
-<body>
-<h1>JS介绍</h1>
-<p id="demo1">hello JS!</p>
-<button type="button" onclick='showchange()'>click me</button>
-<button type="button" onclick='showtry()'>try it</button>
-<script>
-    function showchange(){
-        document.getElementById("demo1").innerHTML="hello AtlasData!"
-    }
 
-    function showtry(){
-      if(confirm("你将被改变")){
-             document.write("hello AtlasData!");
-       }
-   }
-    var p=document.getElementById("demo1");
-    console.log(p.innerText);
-</script>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<title>JS练习</title>
+	</head>
+
+	<body>
+		<h1>JS介绍</h1>
+		<p id="demo1"></p>
+		<h3 id="demo2"></h3>
+		<button type="button" onclick='showchange()'>click me</button>
+		<button type="button" onclick='showtry()' id="btn2">try it</button>
+		<script>
+			var p = document.getElementById("demo1");
+			var h1 = document.querySelector("#demo2");
+			console.log(p.innerText);
+			p.textContent = "textContent测试";
+			console.log(p.textContent);
+
+			function showchange() {
+				var text = "这是字符串后两个是数字2和4与字符串9用'+'连接后的结果：" + 2 + 4 + "9";
+				h1.innerHTML = text;
+			}
+
+			function showtry() {
+				var text1 = 2 + 4 + "9：这是前两个是数字2和4与字符串9用'+'连接后的结果";
+				p.textContent = text1;
+			}
+
+			//			单行注释
+			/*
+			 多行注释
+			 */
+		</script>
+	</body>
+
 </html>

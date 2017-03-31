@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+<h1>create a javascript object</h1>
+<p id="demo1"></p>
+<script type="text/javascript">
+    var xiaoming_score = {name: "xiaoming", math: 90, english: 78, chinese: 90};
+    var p = document.getElementById("demo1");
+    var math = xiaoming_score.math;
+    var chinese = xiaoming_score.chinese;
+    var english = xiaoming_score.english;
+    p.innerText = xiaoming_score.name + "的语文：" + chinese + "分, 数学：" + math + "分, 英语：" + english + "分 平均分：" + (chinese + english + math) / 3 + "分。"
+
+</script>
+
+</body>
+</html>

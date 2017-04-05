@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>javascript for number</title>
+</head>
+<body>
+<script>
+    var x = 0.1 + 0.2;
+    var y = (0.1 * 10 + 2 * 10) / 10;
+    var z = 0xFF;
+    var k = 3 / 0;
+    var l = -3 / 0;
+    var m = 3 / "fly";
+    var num = 167;
+    var num1 = 9.569;
+    console.log("0.1+0.2=" + x);//0.1+0.2=0.30000000000000004
+    console.log("(0.1*10+2*10)/10=" + y);//(0.1*10+2*10)/10=2.1
+    console.log("0xFF的十进制为：" + z);//0xFF的十进制为：255
+    console.log("3/0=" + k);//3/0=Infinity
+    console.log("-3/0=" + l);//-3/0=-Infinity
+    console.log('3/"fly"=' + m);//3/"fly"=NaN
+    console.log("167的十六进制：" + num.toString(16) + " ," + "167的八进制：" + num.toString(8) + " ," + "167的二进制：" + num.toString(2));//167的十六进制：a7 ,167的八进制：247 ,167的二进制：10100111
+    console.log("9.569转换为2位小数的指数计数法：" + num1.toExponential(2) + " ,9.569保留2位小数：" + num1.toFixed(2) + " ,9.569保留2位的有效位数：" + num1.toPrecision(2));//9.569转换为2位小数的指数计数法：9.57e+0 ,9.569保留2位小数：9.57 ,9.569保留2位的有效位数：9.6
+
+</script>
+</body>
+</html>

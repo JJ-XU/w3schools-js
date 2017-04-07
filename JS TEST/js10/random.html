@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Math random</title>
+</head>
+<body>
+<p>游戏规则：游客输入0-9的数字，若与随机生成的数相同且输入次数不超过3次则获胜。</p>
+请输入0-9：<input type="text" id="num"/>
+随机数为： <span id="random"></span>
+
+<p id="score"></p>
+<script>
+    var random = document.getElementById("random");
+    var num = document.getElementById("num");
+    var score = document.getElementById("score");
+    var index = 0;
+    num.addEventListener("blur", function () {
+        var reg = /^[0-9]$/;
+        if (!reg.test(num.value)) {
+            console.log("aa");
+            score.innerText = "请输入数字0-9";
+        } else {
+            random.innerText = Math.floor(Math.random() * 10);
+            if (num.value == random.innerText) {
+                score.innerText = "恭喜过关!";
+            } else {
+                index++;
+                if (index >= 3) {
+                    if (num.value != random.innerText) {
+                        score.innerText = "好可惜，失败了.";
+                        num.disabled = true;
+                    }
+                }
+            }
+        }
+    });
+    num.addEventListener("focus", function () {
+        score.innerText = "";
+    });
+
+</script>
+</body>
+</html>

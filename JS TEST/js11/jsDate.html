@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Date</title>
+</head>
+<body>
+<p id="time"></p>
+
+<p id="formatTime"></p>
+<script>
+    var time = document.getElementById("time");
+    var formatTime = document.getElementById("formatTime");
+
+    var d = new Date();
+    time.innerText = Date();
+    console.log(new Date());//Mon Apr 10 2017 22:35:50 GMT+0800 (中国标准时间)
+    console.log(new Date("July 10, 1994 11:30:00"));//Sun Jul 10 1994 11:30:00 GMT+0800 (中国标准时间)
+    console.log(new Date(890017333));//Sun Jan 11 1970 15:13:37 GMT+0800 (中国标准时间)
+    console.log(new Date(94, 7, 10, 11, 30, 0, 0));//Wed Aug 10 1994 11:30:00 GMT+0800 (中国标准时间)
+    console.log(new Date(94, 8, 16));//Fri Sep 16 1994 00:00:00 GMT+0800 (中国标准时间)
+    console.log(d.toString());//Mon Apr 10 2017 22:35:50 GMT+0800 (中国标准时间)
+    console.log(d.toLocaleString());//2017/4/10 下午10:35:50
+    console.log(d.toUTCString());//Mon, 10 Apr 2017 14:35:50 GMT
+    console.log(d.toDateString());//Mon Apr 10 2017
+    console.log(new Date("2017-04-10"));//Mon Apr 10 2017 08:00:00 GMT+0800 (中国标准时间)
+    console.log(new Date("2017-04-10T14:00:00Z"));//Mon Apr 10 2017 22:00:00 GMT+0800 (中国标准时间)
+    console.log(new Date("04/10/2017"));//Mon Apr 10 2017 00:00:00 GMT+0800 (中国标准时间)
+    console.log(new Date("25-03-2015"));//Invalid Date  这是错误的
+
+    Date.prototype.Format = function (fmt) {
+        var time = {
+            'M+': this.getMonth() + 1,//月是从0开始，故加1
+            'd+': this.getDate(),//日
+            'h+': this.getHours(),//时
+            'm+': this.getMinutes(),//分
+            's+': this.getSeconds(),//秒
+            'q+': Math.floor((this.getMonth() + 3) / 3),//季度
+            'S': this.getMilliseconds()//毫秒
+        };
+        if (/(y+)/.test(fmt)) {
+            fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        }
+        for (var k in time) {
+            if (new RegExp("(" + k + ")").test(fmt)) {
+                fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (time[k]) : (("00" + time[k]).substr(("" + time[k]).length)));
+            }
+        }
+        return fmt;
+    }
+
+    var time1 = new Date().Format("yyyy 年 MM 月 dd 日");
+    formatTime.innerText = time1;//2017 年 04 月 10 日
+
+</script>
+</body>
+</html>

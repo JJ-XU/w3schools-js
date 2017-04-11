@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Javascript Arrays</title>
+</head>
+<body>
+<h2>运动会项目</h2>
+
+<div id="sports"></div>
+<script>
+    var sports = document.getElementById("sports");
+    var subject = ['篮球', '乒乓球', '田径', '标枪'];
+    subject[4] = '体操';
+    subject.push('羽毛球');
+    subject.unshift("跳水");
+    console.log(subject.pop());//羽毛球
+    console.log(subject.shift());//跳水
+    var text = '<ol>';
+    for (var i = 0; i < subject.length; i++) {
+        text += '<li>' + subject[i] + '</li>';
+    }
+    text += '</ol>';
+    sports.innerHTML = text;
+</script>
+</body>
+</html>

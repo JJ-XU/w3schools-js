@@ -5,15 +5,15 @@
     <title>Date</title>
 </head>
 <body>
-<p id="time"></p>
+<p id="demo"></p>
 
-<p id="formatTime"></p>
+<p id="time"></p>
 <script>
+    var demo = document.getElementById("demo");
     var time = document.getElementById("time");
-    var formatTime = document.getElementById("formatTime");
 
     var d = new Date();
-    time.innerText = Date();
+    demo.innerText = Date();
     console.log(new Date());//Mon Apr 10 2017 22:35:50 GMT+0800 (中国标准时间)
     console.log(new Date("July 10, 1994 11:30:00"));//Sun Jul 10 1994 11:30:00 GMT+0800 (中国标准时间)
     console.log(new Date(890017333));//Sun Jan 11 1970 15:13:37 GMT+0800 (中国标准时间)
@@ -50,7 +50,7 @@
     }
 
     var time1 = new Date().Format("yyyy 年 MM 月 dd 日");
-    formatTime.innerText = time1;//2017 年 04 月 10 日
+    time.innerText = time1;//2017 年 04 月 10 日
 
 </script>
 </body>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>array sort</title>
+</head>
+<body>
+<p id="sort"></p>
+<script>
+    var sort = document.getElementById("sort");
+    var arr = [10, 1, 89, 100, 32];
+    var arrobj = [{name: 'xiaoming', age: 16}, {name: 'zhangsan', age: 15}, {name: 'lisi', age: 24}];
+    function arrSort(num) {
+        switch (num) {
+            case 0:
+                sort.innerText = '数组arr[10,1,89,100,32]的sort()排序：' + arr.sort();
+                break;
+            case 1:
+                sort.innerText = '数组arr[10,1,89,100,32]按从小到大排序：' + arr.sort(function (a, b) {
+                            return a - b
+                        });
+                break;
+            case 2:
+                sort.innerText = '数组arr[10,1,89,100,32]按从大到小排序：' + arr.sort(function (a, b) {
+                            return b - a
+                        });
+                break;
+            case 3:
+                sort.innerText = '数组arr[10,1,89,100,32]反转：' + arr.reverse();
+                break;
+            case 4:
+                sort.innerText = '数组arr[10,1,89,100,32]随机排序：' + arr.sort(function (a, b) {
+                            return 0.5 - Math.random()
+                        });
+                break;
+            case 5:
+                sort.innerText = "数组对象arrobj根据age的大小按从小到大：" + arrobj.sort(function (a, b) {
+                            return a.age - b.age
+                        });
+        }
+    }
+    var i = 0;
+    arrSort(0);
+    //使用setInterval仅仅是为了能够看到各种排序所得的结果
+    setInterval(function () {
+        i++;
+        arrSort(i);
+        if (i == 5) {
+            i = 0;
+        }
+    }, 3000);
+
+</script>
+</body>
+</html>

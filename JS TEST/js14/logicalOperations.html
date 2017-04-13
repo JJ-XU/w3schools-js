@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>bitwise dec2bin</title>
+</head>
+<body>
+<p id="bitwise"></p>
+<script>
+    document.getElementById("bitwise").innerHTML = dec2bin(5, 1);
+    function dec2bin(dec, d) {
+        return dec + ">>>" + d + "的二进制值为： " + (dec >>> d).toString(2) + "<br >"
+                + dec + "&" + d + "的二进制值为： " + (dec & d).toString(2) + "<br >"
+                + dec + "|" + d + "的二进制值为： " + (dec | d).toString(2) + "<br >"
+                + dec + "^" + d + "的二进制值为： " + (dec ^ d).toString(2) + "<br >"
+                + dec + "<<" + d + "的二进制值为： " + (dec << d).toString(2) + "<br >"
+                + "~" + d + "的二进制值为： " + (~d).toString(2);
+    }
+</script>
+</body>
+</html>

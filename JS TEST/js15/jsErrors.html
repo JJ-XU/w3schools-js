@@ -6,9 +6,9 @@
 </head>
 <body>
 <h4>只能输入中文</h4>
-<input type="text" id='word'>
-<button type='button' onclick="showMessage()">try it</button>
-<p id='error'></p>
+<input type="text" id="word">
+<button type="button" onclick="showMessage()">try it</button>
+<p id="error"></p>
 <script>
     function showMessage() {
         var word = document.getElementById("word").value;
@@ -16,8 +16,8 @@
         error.innerHTML = '';
         var exp = /^[\u4e00-\u9fa5]*$/;//正则表达式判断输入值是否为中文
         try {
-            if (word == '') throw '输入值为空';
-            if (!exp.test(word)) throw '输入值不是中文';
+            if (word == '') {throw '输入值为空';}
+            if (!exp.test(word)) {throw '输入值不是中文';}
         } catch (err) {
             error.innerHTML = "Error: " + err + ".";
         }

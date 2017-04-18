@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JS Object Method</title>
+</head>
+<body>
+<p id="cat"></p>
+<script>
+    function cat(name, eyescolor, age) {
+        this.name = name;
+        this.eyescolor = eyescolor;
+        this.age = age;
+        this.hobbies = "抓老鼠";
+        this.changeHobbies = function (hobbies) {
+            this.hobbies = hobbies;
+        }
+    }
+    var cat = new cat("bobo", "蓝色", "2");
+    cat.changeHobbies("吃鱼");
+    document.getElementById('cat').innerHTML =`${cat.name}是一只${cat.age}岁的猫，爱好${cat.hobbies}!`;//使用了ES6模板字符串
+</script>
+</body>
+</html>

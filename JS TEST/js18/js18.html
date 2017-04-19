@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>js</title>
+    <style>
+        #container {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            background: yellow;
+        }
+
+        #move {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background-color: red;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <button onclick="moving()">move</button>
+</div>
+<div id="container">
+    <div id="move"></div>
+</div>
+
+<script>
+    //Function创建函数
+    var add = new Function("a", "b", "return a+b");
+    console.log(add(3, 4));
+    //参数数组 arguments
+    function findMax() {
+        var max = arguments[0];
+        for (var i = 0; i < arguments.length; i++) {
+            if (arguments[i] > max) {
+                max = arguments[i];
+            }
+            return max;
+        }
+    }
+    var maxNum = findMax(21, 1, 45, 22, 13);
+    console.log(maxNum);
+    //call,apply
+    var arr = [2, 5];
+    console.log(add.call(this, 4, 5));
+    console.log(add.apply(this, arr));
+    //animate
+    function moving() {
+        var elem = document.getElementById("move");
+        var pos = 0;
+        var id = setInterval(move, 5);
+
+        function move() {
+            pos++;
+            elem.style.top = pos + 'px';
+            elem.style.left = pos + 'px';
+            if (pos == 350) {
+                pos = 0;
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播图</title>
+    <style>
+        .lunbo {
+            width: 500px;
+            margin: 40px auto;
+            position: relative;
+        }
+
+        .lunbo .item {
+            display: none;
+        }
+
+        .lunbo .item:first-child {
+            display: block;
+        }
+
+        .lunbo .item > a > img {
+            width: 500px;
+            height: 300px;
+        }
+
+        .lunbo ul {
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+        }
+
+        .lunbo ul > li {
+            margin: 0;
+            padding: 0;
+            display: inline-block;
+            cursor: pointer;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .lunbo ul .active {
+            background: rgba(243, 5, 25, 0.5);
+        }
+    </style>
+
+</head>
+<body>
+<div class="lunbo" id="lunbo">
+    <div class="item"><a href="javascript:;"><img src="img/img01.jpg" alt=""></a></div>
+    <div class="item"><a href="javascript:;"><img src="img/img04.jpg" alt=""></a></div>
+    <div class="item"><a href="javascript:;"><img src="img/img02.jpg" alt=""></a></div>
+    <div class="item"><a href="javascript:;"><img src="img/img03.jpg" alt=""></a></div>
+    <ul>
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+<script>
+    var lunbo = document.getElementById("lunbo");
+    var items = document.getElementsByClassName("item");
+    var lists = document.getElementsByTagName("ul")[0].getElementsByTagName("li");
+    var index = 0;
+    var timer = null;
+    jishi();
+    lunbo.addEventListener("mousedown", function () {
+        clearInterval(timer)
+    });
+    lunbo.addEventListener("mouseup", function () {
+        jishi();
+    });
+    for (var i = 0; i < lists.length; i++) {
+        lists[i].addEventListener("mousedown", function (n) {
+            return function () {
+                index = n;
+                show_it();
+            }
+        }(i));
+    }
+    //先清除样式
+    function show_it() {
+        for (var i = 0; i < lists.length; i++) {
+            lists[i].className = "";
+            items[i].style.display = "none"
+        }
+        lists[index].className = "active";
+        items[index].style.display = "block";
+    }
+
+    function jishi() {
+        timer = setInterval(function () {
+            if (index > items.length - 1) {
+                index = 0;
+            }
+            show_it();
+            index++;
+
+        }, 2000);
+    }
+
+</script>
+</body>
+</html>

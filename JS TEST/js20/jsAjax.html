@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>AJAX</title>
+</head>
+<body>
+<div id="tips">
+    <h1>Ajax 请求</h1>
+    <ol>
+        <li>AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。</li>
+        <li>AJAX 不是新的编程语言，而是一种使用现有标准的新方法。</li>
+        <li>AJAX 是与服务器交换数据并更新部分网页的艺术，在不重新加载整个页面的情况下。</li>
+    </ol>
+    <button tyep="button" id="btn" onclick="load()">加载</button>
+</div>
+<script>
+    function load() {
+        var xmlhttp;
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            //兼容IE
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("tips").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET", "ajax_tips.txt", true);
+        xmlhttp.send(null);
+    }
+</script>
+</body>
+</html>

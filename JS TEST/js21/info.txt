@@ -1,0 +1,6 @@
+{"student":[
+            {"name":"lisi","age":14,"city":"beijing"},
+            {"name":"zhangsan","age":18,"city":"nanjing"},
+            {"name":"xuwenjuan","age":19,"city":"shaoguan"}
+            ]
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+<div id="student"></div>
+<input type="button" id="pre" value="<<">
+<input type="button" id="next" value=">>">
+<script>
+    var i = 0;
+    var student = '';
+    showInfo(i);
+    function showInfo(i) {
+        var xmlhttp;
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            //兼容IE
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                currentInfo(this, i);
+            }
+        };
+        xmlhttp.open("GET", "info.txt", true);
+        xmlhttp.send(null);
+    }
+
+    function currentInfo(info, i) {
+        var infos = JSON.parse(info.responseText);
+        student = infos.student;
+        document.getElementById("student").innerHTML = "姓名: " + student[i].name + "<br>年龄: " + student[i].age + "<br>所在城市: " + student[i].city;
+    }
+    document.getElementById("pre").addEventListener("click", function () {
+        if (i > 0) {
+            i--;
+            showInfo(i);
+        }
+    });
+    document.getElementById("next").addEventListener("click", function () {
+        if (i < student.length - 1) {
+            i++;
+            showInfo(i);
+        }
+    });
+</script>
+</body>
+</html>

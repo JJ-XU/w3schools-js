@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>放大镜</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #box {
+            width: 400px;
+            height: 255px;
+            margin: 100px;
+            margin-left: 17%;
+            border: 1px solid #eee;
+            position: relative;
+        }
+
+        #move {
+            width: 160px;
+            height: 120px;
+            position: absolute;
+            background: black;
+            opacity: 0.6;
+            left: 0px;
+            top: 0px;
+            display: none;
+        }
+
+        #big_box {
+            left: 460px;
+            width: 400px;
+            height: 300px;
+            overflow: hidden;
+            position: absolute;
+            border: 1px solid #eee;
+            top: 0px;
+            display: none;
+        }
+
+        #big_box img {
+            width: 1000px;
+            height: 680px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <img src="image/macbook-small.jpg" alt="#">
+
+    <div id="move"></div>
+    <div id="big_box">
+        <img id="big_img" src="image/macbook-big.jpg" alt="#">
+    </div>
+</div>
+<script>
+    var box = document.getElementById("box");
+    var move = document.getElementById("move");
+    var big_box = document.getElementById("big_box");//big-box
+    var big_img = document.getElementById("big_img");//img
+    box.onmousemove = function (e) {
+        big_box.style.display = "block";
+        move.style.display = "block";
+        var _left = e.clientX - box.offsetLeft - move.offsetWidth / 2;//计算move的位置
+        var _top = e.clientY - box.offsetTop - move.offsetHeight / 2;
+        if (_top <= 0) {//滑到box的最顶部
+            _top = 0;
+        } else if (_top >= box.offsetHeight - move.offsetHeight) {//滑到box的最底部
+            _top = box.offsetHeight - move.offsetHeight;
+        }
+        if (_left <= 0) {//滑到box的最左边
+            _left = 0;
+        } else if (_left >= box.offsetWidth - move.offsetWidth)//滑到box的最右边
+            _left = box.offsetWidth - move.offsetWidth;
+        move.style.top = _top + "px";//设置move的位置
+        move.style.left = _left + "px";
+        var w = _left / (box.offsetWidth - move.offsetWidth);//计算移动的比例
+        var h = _top / (box.offsetHeight - move.offsetHeight);
+        var big_img_top = (big_img.offsetHeight - big_box.offsetHeight) * h;//计算大图的位置
+        var big_img_left = (big_img.offsetWidth - big_box.offsetWidth) * w + 30;
+        big_img.style.top = -big_img_top + "px";//设置大图的位置信息
+        big_img.style.left = -big_img_left + "px";
+    }
+    box.onmouseout = function () {//鼠标移开box不显示大图片和选框
+        big_box.style.display = "none";
+        move.style.display = "none";
+    }
+</script>
+</body>
+</html>

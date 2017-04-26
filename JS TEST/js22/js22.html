@@ -29,7 +29,7 @@
             display: none;
         }
 
-        #big_box {
+        #big-box {
             left: 460px;
             width: 400px;
             height: 300px;
@@ -40,7 +40,7 @@
             display: none;
         }
 
-        #big_box img {
+        #big-box img {
             width: 1000px;
             height: 680px;
             position: absolute;
@@ -54,33 +54,33 @@
     <img src="image/macbook-small.jpg" alt="#">
 
     <div id="move"></div>
-    <div id="big_box">
-        <img id="big_img" src="image/macbook-big.jpg" alt="#">
+    <div id="big-box">
+        <img id="big-img" src="image/macbook-big.jpg" alt="#">
     </div>
 </div>
 <script>
     var box = document.getElementById("box");
     var move = document.getElementById("move");
-    var big_box = document.getElementById("big_box");//big-box
-    var big_img = document.getElementById("big_img");//img
+    var big_box = document.getElementById("big-box");//big-box
+    var big_img = document.getElementById("big-img");//img
     box.onmousemove = function (e) {
         big_box.style.display = "block";
         move.style.display = "block";
-        var _left = e.clientX - box.offsetLeft - move.offsetWidth / 2;//计算move的位置
-        var _top = e.clientY - box.offsetTop - move.offsetHeight / 2;
-        if (_top <= 0) {//滑到box的最顶部
-            _top = 0;
-        } else if (_top >= box.offsetHeight - move.offsetHeight) {//滑到box的最底部
-            _top = box.offsetHeight - move.offsetHeight;
+        var left = e.clientX - box.offsetLeft - move.offsetWidth / 2;//计算move的位置
+        var top = e.clientY - box.offsetTop - move.offsetHeight / 2;
+        if (top <= 0) {//滑到box的最顶部
+            top = 0;
+        } else if (top >= box.offsetHeight - move.offsetHeight) {//滑到box的最底部
+            top = box.offsetHeight - move.offsetHeight;
         }
-        if (_left <= 0) {//滑到box的最左边
-            _left = 0;
-        } else if (_left >= box.offsetWidth - move.offsetWidth)//滑到box的最右边
-            _left = box.offsetWidth - move.offsetWidth;
-        move.style.top = _top + "px";//设置move的位置
-        move.style.left = _left + "px";
-        var w = _left / (box.offsetWidth - move.offsetWidth);//计算移动的比例
-        var h = _top / (box.offsetHeight - move.offsetHeight);
+        if (left <= 0) {//滑到box的最左边
+            left = 0;
+        } else if (left >= box.offsetWidth - move.offsetWidth)//滑到box的最右边
+            left = box.offsetWidth - move.offsetWidth;
+        move.style.top = top + "px";//设置move的位置
+        move.style.left = left + "px";
+        var w = left / (box.offsetWidth - move.offsetWidth);//计算移动的比例
+        var h = top / (box.offsetHeight - move.offsetHeight);
         var big_img_top = (big_img.offsetHeight - big_box.offsetHeight) * h;//计算大图的位置
         var big_img_left = (big_img.offsetWidth - big_box.offsetWidth) * w + 30;
         big_img.style.top = -big_img_top + "px";//设置大图的位置信息

@@ -52,7 +52,6 @@
 <body>
 <div id="box">
     <img src="image/macbook-small.jpg" alt="#">
-
     <div id="move"></div>
     <div id="big-box">
         <img id="big-img" src="image/macbook-big.jpg" alt="#">
@@ -61,8 +60,13 @@
 <script>
     var box = document.getElementById("box");
     var move = document.getElementById("move");
+<<<<<<< HEAD
     var big_box = document.getElementById("big-box");//big-box
     var big_img = document.getElementById("big-img");//img
+=======
+    var big_box = document.getElementById("big_box");
+    var big_img = document.getElementById("big_img");
+>>>>>>> origin/master
     box.onmousemove = function (e) {
         big_box.style.display = "block";
         move.style.display = "block";
@@ -73,6 +77,7 @@
         } else if (top >= box.offsetHeight - move.offsetHeight) {//滑到box的最底部
             top = box.offsetHeight - move.offsetHeight;
         }
+<<<<<<< HEAD
         if (left <= 0) {//滑到box的最左边
             left = 0;
         } else if (left >= box.offsetWidth - move.offsetWidth)//滑到box的最右边
@@ -81,12 +86,23 @@
         move.style.left = left + "px";
         var w = left / (box.offsetWidth - move.offsetWidth);//计算移动的比例
         var h = top / (box.offsetHeight - move.offsetHeight);
+=======
+        if (_left <= 0) {//滑到box的最左边
+            _left = 0;
+        } else if (_left >= box.offsetWidth - move.offsetWidth){//滑到box的最右边
+            _left = box.offsetWidth - move.offsetWidth;
+        }
+        move.style.top = _top + "px";//设置move的位置
+        move.style.left = _left + "px";
+        var w = _left / (box.offsetWidth - move.offsetWidth);//计算移动的比例
+        var h = _top / (box.offsetHeight - move.offsetHeight);
+>>>>>>> origin/master
         var big_img_top = (big_img.offsetHeight - big_box.offsetHeight) * h;//计算大图的位置
         var big_img_left = (big_img.offsetWidth - big_box.offsetWidth) * w + 30;
         big_img.style.top = -big_img_top + "px";//设置大图的位置信息
         big_img.style.left = -big_img_left + "px";
     }
-    box.onmouseout = function () {//鼠标移开box不显示大图片和选框
+    box.onmouseout = function () {
         big_box.style.display = "none";
         move.style.display = "none";
     }

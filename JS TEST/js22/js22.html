@@ -60,11 +60,10 @@
 <script>
     var box = document.getElementById("box");
     var move = document.getElementById("move");
-<<<<<<< HEAD
-    var big_box = document.getElementById("big-box");//big-box
-    var big_img = document.getElementById("big-img");//img
+    var bigBox = document.getElementById("big-box");
+    var bigImg = document.getElementById("big-img");
     box.onmousemove = function (e) {
-        big_box.style.display = "block";
+        bigBox.style.display = "block";
         move.style.display = "block";
         var left = e.clientX - box.offsetLeft - move.offsetWidth / 2;//计算move的位置
         var top = e.clientY - box.offsetTop - move.offsetHeight / 2;
@@ -81,13 +80,13 @@
         move.style.left = left + "px";
         var w = left / (box.offsetWidth - move.offsetWidth);//计算移动的比例
         var h = top / (box.offsetHeight - move.offsetHeight);
-        var big_img_top = (big_img.offsetHeight - big_box.offsetHeight) * h;//计算大图的位置
-        var big_img_left = (big_img.offsetWidth - big_box.offsetWidth) * w + 30;
-        big_img.style.top = -big_img_top + "px";//设置大图的位置信息
-        big_img.style.left = -big_img_left + "px";
+        var bigImgTop = (bigImg.offsetHeight - bigBox.offsetHeight) * h;//计算大图的位置
+        var bigImgLeft = (bigImg.offsetWidth - bigBox.offsetWidth) * w + 30;
+        bigImg.style.top = -bigImgTop + "px";//设置大图的位置信息
+        bigImg.style.left = -bigImgLeft + "px";
     }
     box.onmouseout = function () {
-        big_box.style.display = "none";
+        bigBox.style.display = "none";
         move.style.display = "none";
     }
 </script>

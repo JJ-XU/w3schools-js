@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JavaScript Location</title>
+</head>
+<body>
+<script>
+    //改变浏览器的位置的方法,最常用的是location.href
+    location.assign("https://www.baidu.com/");
+    window.location = "https://www.baidu.com/";
+    location.href = "https://www.baidu.com/";
+    //改变当前加载页面
+    location.hash = "#section";//设置锚点
+    location.search = "?q=javascript&num=10";//设置查询字符串
+    location.hostname = "https://www.baidu.com";//设置不带端口号的服务器名称
+    location.pathname = "js";//设置URL中的目录和（或）文件名
+    location.port = "8080";//设置端口
+
+    //获取查询字符串参数，返回包含所有参数的一个对象
+    function getQueryStringArgs() {
+        //去除开头的问号
+        var queryString = location.search.length > 0 ? location.search.substring(1) : "",
+                args = {},
+                items = queryString.length ? queryString.split("&") : [],
+                item = null,
+                name = null,
+                value = null;
+        for (var i = 0; i < items.lnegth; i++) {
+            item = items.split("=");
+            name = decodeURIComponent(item[0]);//decodeURIComponent解码
+            value = decodeURIComponent(item[1]);
+            if (name.length) {
+                args[name] = value;
+            }
+        }
+        return args;
+    }
+    // 以location.search="?q=javascript&num=10";为例
+    var args = getQueryStringArgs();
+    console.log(args["q"]);//javascript
+    console.log(args["num"]);//10
+</script>
+</body>
+</html>

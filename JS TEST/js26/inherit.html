@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JS的对象与原型继承</title>
+</head>
+<body>
+<script>
+    //new创建基于原型的对象
+    function Cat(props) {
+        this.name = props.name || "kitty";
+        this.age = props.age || 2;
+    }
+    Cat.prototype.say = function () {
+        alert("Hello," + this.name + "!");
+    }
+    function createCat(props) {
+        return new Cat(props || {});
+    }
+    var keke = createCat({
+        name: "keke"
+    });
+    keke.say();
+    //原型继承
+    function PetCat(props) {
+        Cat.call(this, props);
+        this.size = props.size;
+    }
+    function F() {
+    }
+    F.prototype = Cat.prototype;
+    PetCat.prototype = new F();
+    PetCat.prototype.constructor = PetCat;
+    PetCat.prototype.geSize = function () {
+        return this.size;
+    };
+    var mimi = new PetCat({
+        name: "mimi",
+        size: 113
+    });
+    console.log(mimi.name);//mimi
+    console.log(mimi.geSize());//113
+    //验证
+    console.log(mimi instanceof PetCat);//true
+    console.log(mimi instanceof Cat);//true
+</script>
+</body>
+</html>

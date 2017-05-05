@@ -5,12 +5,13 @@
     <title>JS DOM</title>
 </head>
 <body>
-<!--
-    因为使用的是childnodes，ul和li之间不留空则不会多出textnode，
-    这是childnodes与child的区别，因为格式化代码会默认的将ul和li
-    换行处理，故这里重新将它放在同一行
--->
-<ul id="item"><li>item1</li><li>item2</li><li>item3</li></ul>
+<!-children是指DOM Object类型的子对象，不包括tag之间隐形存在的TextNode；
+childNodes包括tag之间隐形存在的TextNode对象。-->
+<ul id="item">
+    <li>item1</li>
+    <li>item2</li>
+    <li>item3</li>
+</ul>
 <div id="first"></div>
 <div id="last"></div>
 <script>
@@ -18,13 +19,13 @@
     var first = document.getElementById("first");
     var last = document.getElementById("last");
     var firstChild = item.childNodes[0];
-    var firstChildren = item.firstChild;
+    var firstChild1 = item.firstChild;
     var secondChild = item.childNodes.item(1);
     var lastChild = item.lastChild;
     var count = item.childNodes.length;
     console.log("节点名:" + item.nodeName);
     console.log("firstChild:" + firstChild);
-    console.log("firstChildren:" + firstChildren);
+    console.log("firstChild1:" + firstChild1);
     console.log("secondChild:" + secondChild);
     console.log("lastChild:" + lastChild)
     console.log(count);
@@ -45,7 +46,7 @@
     item.removeChild(item.lastChild);
     for (var i = 0; i < item.childNodes.length; i++) {
         if (item.childNodes[i].nextSibling == null) {
-            last.innerText= item.childNodes[i].innerText + "是最后一个li元素的值";
+            last.innerText = item.childNodes[i].innerText + "是最后一个li元素的值";
         } else if (item.childNodes[i].previousSibling == null) {
             first.innerText = item.childNodes[i].innerText + "是第一个li元素的值";
         }

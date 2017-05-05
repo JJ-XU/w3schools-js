@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JS DOM</title>
+</head>
+<body>
+<!-children是指DOM Object类型的子对象，不包括tag之间隐形存在的TextNode；
+childNodes包括tag之间隐形存在的TextNode对象。-->
+<ul id="item">
+    <li>item1</li>
+    <li>item2</li>
+    <li>item3</li>
+</ul>
+<div id="first"></div>
+<div id="last"></div>
+<script>
+    var item = document.getElementById("item");
+    var first = document.getElementById("first");
+    var last = document.getElementById("last");
+    //操作节点
+    function createElement(tagname, textnode) {
+        var node = document.createElement(tagname);
+        node.innerText = textnode;
+        return node;
+    }
+    var li1 = createElement("li", "item4");
+    var li2 = createElement("li", "item5");
+    item.appendChild(li1);//插入到最后一个
+    item.insertBefore(li2, item.children.item(2));//插入到第三个前面
+    /**
+     * 获取ul的子节点中的第一个和最后一个元素
+     * nextElementSibling，previousElementSibling，
+     * lastElementChild和firstElementChild不支持IE9以下浏览器
+     */
+    //方式一
+    for (var i = 0; i < item.childNodes.length; i++) {
+        if (item.childNodes[i].nodeType == 1) { //判断item.childNodes是否是elementNode
+            if (item.childNodes[i].nextElementSibling == null) {
+                last.innerText = item.childNodes[i].innerText + "是最后一个li元素的值";
+            } else if (item.childNodes[i].previousElementSibling == null) {
+                first.innerText = item.childNodes[i].innerText + "是第一个li元素的值";
+            }
+        }
+    }
+    //方式二
+    for (var i = 0; i < item.children.length; i++) {
+        if (item.children[i].nextElementSibling == null) {
+            last.innerText = item.children[i].innerText + "是最后一个li元素的值";
+        } else if (item.children[i].nextElementSibling == null) {
+            first.innerText = item.children[i].innerText + "是第一个li元素的值";
+        }
+    }
+    //方式三
+    last.innerText = item.lastElementChild.innerText + "是最后一个li元素的值";
+    first.innerText = item.firstElementChild.innerText + "是第一个li元素的值";
+</script>
+
+</body>
+</html>

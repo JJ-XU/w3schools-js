@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>JavaScript DOM</title>
+    <style>
+        #img {
+            width: 300px;
+            height: 100px;
+            margin: 0 244px;
+        }
+
+        #img image {
+            width: 50%;
+        }
+
+        #frm input {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<a name="javascript" href="#">javascript</a>
+
+<div id="img">
+    <img src="image/macbook-big.jpg" alt="大图">
+    <img src="image/macbook-small.jpg" alt="小图">
+</div>
+<form id="frm" action="">
+    name: <input type="text" name="name" value="Dev"><br>
+    car: <input type="text" name="car" value="BEN" style="margin-left:18px">
+</form>
+<button onclick="getDocumentElement()">点击</button>
+<p id="demo"></p>
+
+<p id="demo1"></p>
+
+<p id="demo2"></p>
+
+<p id="demo3"></p>
+
+<p id="demo4"></p>
+
+<p id="demo5"></p>
+<script>
+    function getDocumentElement() {
+        var form = document.forms["frm"];
+        var text = "";
+        for (var i = 0; i < form.length; i++) {
+            text += form.elements[i].value + "<br>";
+        }
+        document.getElementById("demo").innerHTML = text;
+        document.getElementById("demo1").innerHTML = '当前页面包含属性name的所有超级链接数组个数:' + document.anchors.length + "<br>当前页面包含属性href的所有超级链接数组个数:" + document.links.length;
+        document.getElementById('demo2').innerHTML = '当前页面的head元素:' + document.head;
+        document.getElementById('demo3').innerHTML = '当前页面的img的个数:' + document.images.length;
+        document.getElementById('demo4').innerHTML = '当前页面的script的个数:' + document.scripts.length;
+        document.getElementById('demo5').innerHTML = '当前页面的标题:' + document.title;
+    }
+</script>
+</body>
+</html>

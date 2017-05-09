@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>DOM CSS</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #tab {
+            width: 300px;
+            margin: 10px auto;
+        }
+
+        #tab-lis {
+            height: 29px;
+            list-style: none;
+            padding: 0;
+        }
+
+        #tab-lis:after {
+            clear: both;
+        }
+
+        #tab-lis li {
+            float: left;
+            width: 30%;
+            height: 29px;
+            text-align: center;
+            margin-left: 10px;
+            font-size: 18px;
+            line-height: 29px;
+            cursor: pointer;
+        }
+
+        #tab-lis li:nth-child(1) {
+            margin-left: 0;
+        }
+
+        .item {
+            width: 300px;
+            height: 200px;
+            border: 1px solid #eee;
+            display: none;
+        }
+
+        .selected {
+            background: pink;
+            opacity: 0.7;
+        }
+
+        .show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="tab">
+    <h1>tab切换</h1>
+    <ul id="tab-lis">
+        <li class="selected" value="0">美食</li>
+        <li value="1">娱乐</li>
+        <li value="2">丽人</li>
+    </ul>
+    <div class="item show">页面一</div>
+    <div class="item">页面二</div>
+    <div class="item">页面三</div>
+</div>
+<script>
+    var items = document.getElementsByClassName("item");
+    var ul = document.getElementById("tab-lis");
+    var lis = ul.getElementsByTagName("li");
+    var index = 0;
+    for (var i = 0; i < lis.length; i++) {
+        lis[i].addEventListener("mouseover", function () {
+            index = this.value;
+            for (var i = 0; i < items.length; i++) {
+                if (i == index) {
+                    items[i].className = 'item show';
+                    lis[i].className = 'selected';
+                } else {
+                    items[i].className = 'item';
+                    lis[i].className = '';
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

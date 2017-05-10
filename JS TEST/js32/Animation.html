@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>JavaScript Animation</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #container {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            left: -200px;
+            top: 0px;
+            background-color: yellow;
+        }
+
+        #animate {
+            width: 20px;
+            height: 50px;
+            position: absolute;
+            top: 75px;
+            left: 200px;
+            background-color: #ddf;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="animate"></div>
+</div>
+<script>
+    var container = document.getElementById('container');
+    var timer = null;
+    container.addEventListener('mouseover', function () {
+        startMove(0);
+    });
+    container.addEventListener('mouseout', function () {
+        startMove(-200);
+    });
+    function startMove(target) {
+        clearInterval(timer);
+        timer = setInterval(function () {
+            var speed = 0;
+            if (container.offsetLeft > target) {
+                speed = -5;
+            } else {
+                speed = 5;
+            }
+            if (container.offsetLeft == target) {
+                clearInterval(timer);
+            } else {
+                container.style.left = container.offsetLeft + speed + "px";
+            }
+        }, 30);
+    }
+</script>
+</body>
+</html>

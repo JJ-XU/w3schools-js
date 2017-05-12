@@ -6,11 +6,14 @@
 <body>
 <script>
     console.log(typeof myName);//undefined
-    function getTypeOfMyName() {
-        var myName = "xuwenjuan";
+  /**
+   * 获取传入数据的数据类型
+   * @param  {string} myName [名字]   
+   */
+    function getTypeOfMyName(myName) {
         console.log(typeof myName);//string
     }
-    getTypeOfMyName();
+    getTypeOfMyName( "xuwenjuan");
 </script>
 </body>
 </html>

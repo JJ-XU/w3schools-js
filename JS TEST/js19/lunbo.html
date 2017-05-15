@@ -69,9 +69,13 @@
     var index = 0;
     var timer = null;
     jishi();
+    /** 绑定鼠标按下事件*/
     lunbo.addEventListener("mousedown", function () {
+        /**清除定时器*/
         clearInterval(timer)
     });
+
+    /**绑定松开鼠标*/
     lunbo.addEventListener("mouseup", function () {
         jishi();
     });
@@ -83,7 +87,7 @@
             }
         }(i));
     }
-    //先清除样式
+    /** 显示与焦点相对应的图片*/
     function show_it() {
         for (var i = 0; i < lists.length; i++) {
             lists[i].className = "";
@@ -92,7 +96,7 @@
         lists[index].className = "active";
         items[index].style.display = "block";
     }
-
+    /** 定时修改index值*/
     function jishi() {
         timer = setInterval(function () {
             if (index > items.length - 1) {
@@ -100,7 +104,6 @@
             }
             show_it();
             index++;
-
         }, 2000);
     }
 

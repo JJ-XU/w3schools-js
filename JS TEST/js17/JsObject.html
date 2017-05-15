@@ -29,21 +29,7 @@
     }
     var cat = new Cat("bobo", "蓝色", "2");
     cat.changeHobbies("吃鱼");
-    document.getElementById('cat').innerHTML =
-    `${cat.name}
-    是一只$
-    {
-        cat.age
-    }
-    岁的猫
-    ，
-    爱好$
-    {
-        cat.hobbies
-    }
-    !
-    `
-    ;//使用了ES6模板字符串
+    document.getElementById('cat').innerHTML =`${cat.name}是一只${cat.age}岁的猫，爱好${cat.hobbies}!`;//使用了ES6模板字符串
 </script>
 </body>
 </html>

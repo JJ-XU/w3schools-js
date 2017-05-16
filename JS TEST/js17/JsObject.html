@@ -8,28 +8,27 @@
 <p id="cat"></p>
 <script>
     /**
-     * Cat类
      * @param name {string} 猫的名字
-     * @param eyescolor {string} 猫眼睛的颜色
+     * @param eyesColor {string} 猫眼睛的颜色
      * @param age {string} 猫的年龄
      * @constructor
      */
-    function Cat(name, eyescolor, age) {
+    function Cat(name, eyesColor, age) {
         this.name = name;
-        this.eyescolor = eyescolor;
+        this.eyesColor = eyesColor;
         this.age = age;
-        this.hobbies = "抓老鼠";
+        this.hobby = "抓老鼠";
         /**
          * 改变爱好
-         * @param hobbies {string} 爱好
+         * @param hobby {string} 爱好
          */
-        this.changeHobbies = function (hobbies) {
-            this.hobbies = hobbies;
+        this.changeHobby = function (hobby) {
+            this.hobby = hobby;
         }
     }
     var cat = new Cat("bobo", "蓝色", "2");
-    cat.changeHobbies("吃鱼");
-    document.getElementById('cat').innerHTML =`${cat.name}是一只${cat.age}岁的猫，爱好${cat.hobbies}!`;//使用了ES6模板字符串
+    cat.changeHobby("吃鱼");
+    document.getElementById('cat').innerHTML =`${cat.name}是一只${cat.age}岁的猫，爱好${cat.hobby}!`;//使用了ES6模板字符串
 </script>
 </body>
 </html>

@@ -8,6 +8,12 @@
 <p id="bitwise"></p>
 <script>
     document.getElementById("bitwise").innerHTML = dec2bin(5, 1);
+    /**
+     *进行位运算符后将十进制数转为二进制数
+     * @param dec {number}
+     * @param d {number}
+     * @returns {string}
+     */
     function dec2bin(dec, d) {
         return dec + ">>>" + d + "的二进制值为： " + (dec >>> d).toString(2) + "<br >"
                 + dec + "&" + d + "的二进制值为： " + (dec & d).toString(2) + "<br >"

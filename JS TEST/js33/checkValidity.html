@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>猜数字</title>
+</head>
+<body>
+<input type="number" max="100" min="0" required disabled=true>
+<button id="confirm" disabled=true>确定</button>
+<button id="random">获取0-100随机数</button>
+<div id="msg"></div>
+<script>
+    var input = document.getElementsByTagName('input')[0];
+    var conBtn = document.getElementById('confirm');
+    var ranBtn = document.getElementById('random');
+    /**获取0-100的随机数*/
+    ranBtn.addEventListener('click', function () {
+        /**将输入框和确定按钮设为可点击*/
+        input.disabled = false;
+        conBtn.disabled = false;
+        var ranNumber = Math.floor(Math.random() * (100 + 1));
+        getThePunished(ranNumber);
+    });
+    /**
+     *获得被惩罚的人
+     * @param ranNumber 0-100的随机数
+     */
+    function getThePunished(ranNumber) {
+        conBtn.onclick = function () {
+            if (input.checkValidity() == false) {
+                document.getElementById("msg").innerHTML = input.validationMessage;
+            } else {
+                if (input.value < ranNumber) {
+                    text = "输入" + input.value + "至" + input.getAttribute('max') + "的数字";
+                    input.setAttribute('min', input.value);
+                } else if (input.value > ranNumber) {
+                    text = input.getAttribute('min') + "至" + input.value + "的数字";
+                    input.setAttribute('max', input.value);
+                } else {
+                    text = "恭喜中奖了，请接收惩罚！";
+                }
+                document.getElementById("msg").innerHTML = text;
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

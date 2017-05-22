@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车-删除功能</title>
+</head>
+<body>
+<table id="goods">
+    <tr>
+        <th>商品</th>
+        <th>购买数量</th>
+        <th>操作</th>
+    </tr>
+    <tr>
+        <td>苹果</td>
+        <td>3</td>
+        <td>
+            <button class="delete">删除</button>
+        </td>
+    </tr>
+    <tr>
+        <td>雪梨</td>
+        <td>2</td>
+        <td>
+            <button class="delete">删除</button>
+        </td>
+    </tr>
+    <tr>
+        <td>香蕉</td>
+        <td>5</td>
+        <td>
+            <button class="delete">删除</button>
+        </td>
+    </tr>
+</table>
+<script>
+    /**
+     * @author 许文娟 <xuwenjuan@atlasdata.com.cn>
+     *     创建于 2017年05月22日
+     */
+    var goods = document.getElementById("goods");
+    var trs = goods.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        trs[i].onclick = function (e) {
+            var e = e || window.event;
+            var el = e.target || e.srcElement;
+            var cls = el.className;
+            if (cls == "delete") {
+                if (confirm("确定删除？")) {
+                    this.parentNode.removeChild(this);
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>

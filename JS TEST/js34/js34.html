@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>购物车-删除功能</title>
+    <title>购物车</title>
 </head>
 <body>
 <table id="goods">
@@ -13,42 +13,69 @@
     </tr>
     <tr>
         <td>苹果</td>
-        <td>3</td>
+        <td>
+            <span class="reduce">-</span>
+            <input class="count" type="text" value="3">
+            <span class="add">+</span>
+        </td>
         <td>
             <button class="delete">删除</button>
         </td>
     </tr>
     <tr>
         <td>雪梨</td>
-        <td>2</td>
+        <td>
+            <span class="reduce">-</span>
+            <input class="count" type="text" value="2">
+            <span class="add">+</span>
+        </td>
         <td>
             <button class="delete">删除</button>
         </td>
     </tr>
     <tr>
         <td>香蕉</td>
-        <td>5</td>
+        <td>
+            <span class="reduce">-</span>
+            <input class="count" type="text" value="5">
+            <span class="add">+</span>
+        </td>
         <td>
             <button class="delete">删除</button>
         </td>
     </tr>
 </table>
 <script>
-    /**
-     * @author 许文娟 <xuwenjuan@atlasdata.com.cn>
-     *     创建于 2017年05月22日
-     */
     var goods = document.getElementById("goods");
     var trs = goods.getElementsByTagName("tr");
     for (var i = 0; i < trs.length; i++) {
+        /**
+         * 为每一行增加一个点击事件
+         * @param e
+         */
         trs[i].onclick = function (e) {
             var e = e || window.event;
             var el = e.target || e.srcElement;
             var cls = el.className;
-            if (cls == "delete") {
-                if (confirm("确定删除？")) {
-                    this.parentNode.removeChild(this);
-                }
+            var count = this.getElementsByClassName("count")[0];
+            var value = parseInt(count.value);
+            /**
+             * 为该行中的某些元素添加点击事件触发后的动作
+             */
+            switch (cls) {
+                case 'delete':
+                    if (confirm("确定删除？")) {
+                        this.parentNode.removeChild(this);
+                    }
+                    break;
+                case 'add':
+                    count.value = value + 1;
+                    break;
+                case 'reduce':
+                    if (value > 1) {
+                        count.value = value - 1;
+                    }
+                    break;
             }
         }
     }

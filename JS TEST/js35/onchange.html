@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>onchange 事件</title>
+</head>
+<body>
+<div id="container">
+    <select id="category">
+        <option value="">分类</option>
+        <option value="1">美食</option>
+        <option value="2">娱乐</option>
+        <option value="3">服饰</option>
+        <option value="4">体育</option>
+    </select>
+
+    <p id="msg"></p>
+</div>
+<script>
+    var category = document.getElementById('category');
+    /**获取下拉框被选中的值*/
+    category.onchange = function () {
+        var selectedIndex = this.selectedIndex;
+        var text = '';
+        if (selectedIndex == 0) {
+            text = '';
+        } else {
+            text = category.options[selectedIndex].text;
+        }
+        document.getElementById('msg').textContent = text;
+    };
+</script>
+</body>
+</html>

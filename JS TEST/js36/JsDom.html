@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .tip {
+            width: 70%;
+            margin: 100px auto;
+            position: relative;
+        }
+
+        a {
+            background: skyblue;
+            padding: 5px 20px;
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .tips {
+            position: absolute;
+            text-align: center;
+            line-height: 0;
+        }
+
+        .tips > p {
+            padding: 5px;
+            line-height: 21px;
+            background: rgba(0, 0, 0, 0.75);
+            color: #fff;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .tips:after {
+            content: '';
+            display: inline-block;
+            width: 0;
+            height: 0;
+            border: 5px solid rgba(0, 0, 0, 0);
+            border-top: 5px solid rgba(0, 0, 0, 0.75);
+        }
+    </style>
+</head>
+<body>
+<p class="tip">
+    <a href="javascript:;" data-s="操作1的提示">操作1</a>
+    <a href="javascript:;" data-s="操作2的提示">操作2</a>
+    <a href="javascript:;" data-s="操作3的提示">操作3</a>
+    <a href="javascript:;" data-s="操作4的提示">操作4</a>
+    <a href="javascript:;" data-s="操作5的提示">操作5</a>
+    <a href="javascript:;" data-s="操作6的提示">操作6</a>
+</p>
+<script type="text/javascript">
+    var a = document.getElementsByTagName('a');
+    var tip = document.getElementsByClassName('tips')[0];
+    for (var i = 0; i < a.length; i++) {
+        /**为每个a标签添加鼠标移入事件*/
+        a[i].addEventListener('mouseover', function () {
+            /**为了保证只创建一个提示框，首先判断tip对象是否存在，不存在则创建*/
+            if (tip == undefined) {
+                var div = document.createElement("div");
+                var p = document.createElement("p");
+                p.className = 'msg';
+                div.className = 'tips';
+                div.appendChild(p);
+                document.getElementsByClassName('tip')[0].appendChild(div);
+                tip = div;
+            }
+            var p = document.getElementsByClassName('msg')[0];
+            tip.style.display = 'block';
+            /**
+             * 获取当前元素的data-s属性，即提示的内容
+             * @type {string}
+             */
+            var str = this.getAttribute("data-s");
+            p.innerHTML = str;
+            var top = this.offsetTop;
+            var left = this.offsetLeft;
+            tip.style.top = top - tip.offsetHeight + 'px';
+            tip.style.left = left + "px";
+        });
+        /**在鼠标移出时隐藏提示框*/
+        a[i].addEventListener('mouseout', function () {
+            tip.style.display = 'none';
+        });
+    }
+</script>
+</body>
+</html>

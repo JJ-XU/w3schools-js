@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS 防止多次点击</title>
+    <style>
+        button{
+            width: 60px;
+            height: 30px;
+            background-color: deepskyblue;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<button onclick="show()" id="click">0</button>
+<button id="test">0</button>
+<script>
+    /**clickTag标志位，初始化为0*/
+    var clickTag = 0;
+    var btn = document.getElementById('click');
+    var test=document.getElementById('test');
+    /**
+     * 防止在一秒内多次点击,方法一
+     * 按扭在点击后1秒内处于不可点击状态，
+     * 一秒后使按钮重新变为可点击状态
+     */
+    function show() {
+        clickTag = 1;
+        btn.innerHTML= Number(btn.innerHTML) + 1;
+        btn.setAttribute('disabled', "true");
+        /**setTimeout只执行function()一次*/
+        setTimeout(function () {
+            clickTag = 0;
+            btn.removeAttribute('disabled');
+        }, 1000);
+    }
+    /**
+     * 防止在一秒内多次点击,方法二
+     */
+     test.onclick=(function(){
+         var last = Date.now();
+         return function(){
+             var now = Date.now();
+             if((now - last)>=1000){
+                 test.innerHTML = Number(test.innerHTML) + 1;
+             }
+             last = now;
+         }
+     })();
+</script>
+</body>
+</html>

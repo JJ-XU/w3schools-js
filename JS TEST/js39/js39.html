@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript 递归</title>
+</head>
+<body>
+<script>
+    /**
+     * @file JavaScript recursive function
+     * @author 许文娟
+     * @copyright 2014-2017 海量云图（北京）数据技术有限公司
+     */
+
+    /**
+     * 递归求阶乘
+     * @param {number} num 正整数
+     * @returns {number} 获取整数的阶乘
+     */
+    function fact(num) {
+        if (num <= 1) {
+            return 1;
+        } else {
+            return num * fact(num - 1);
+        }
+    }
+    var anotherFact = fact;
+    console.log(anotherFact(3));//结果为6
+
+    /**
+     * 递归求两个整数的最大公约数
+     * @param {number} a
+     * @param {number} b
+     * @returns {*}
+     */
+    function gcd(a, b) {
+        var i;
+        if (b == 0) {
+            i = a;
+        } else {
+            i = gcd(b, a % b);
+        }
+        return i;
+    }
+    console.log(gcd(2, 4));//结果为2
+    console.log(gcd(121, 11));//结果为11
+</script>
+</body>
+</html>

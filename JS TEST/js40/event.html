@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript 事件对象</title>
+    <style>
+        div {
+            width: 250px;
+            height: 300px;
+            float: left;
+            margin-left: 10px;
+            text-align: center;
+        }
+
+        #event-element {
+            border: 1px solid red;
+        }
+
+        #event-type {
+            border: 1px solid green;
+        }
+
+        #event-shift {
+            border: 1px solid blue;
+        }
+
+        #event-button {
+            border: 1px solid yellow;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="event-element" onmousedown="whichElement(event)">
+    <p>在红色框内点击，消息框会提示出您所点击的标签的名称</p>
+
+    <p>我是p元素</p>
+
+    <h3>我是h3标题</h3>
+    <img src="logo.png" alt="云图">
+</div>
+<div id="event-type" onmouseover="getEventType(event)">
+    <p>移入绿色框可知被触发事件的类型</p>
+</div>
+<div id="event-shift" onmousedown="isKeyPressed(event)">
+    <p>点击蓝色框内任意位置，消息框会提示您是否按下了shift键</p>
+</div>
+
+<div id="event-button" onmousedown="whichButton(event)">
+    <p>点击黄色框内任意位置，消息框会提示出您点击了哪个鼠标按键。</p>
+</div>
+<input type="text" onkeyup="whichKey(event)">
+<script>
+    /**
+     * @file JavaScript 事件对象
+     * @author 许文娟
+     * @copyright 2014-2017 海量云图（北京）数据技术有限公司
+     */
+
+    /**
+     * 提示事件类型
+     * @param {object} event 事件对象
+     */
+    function getEventType(event) {
+        alert(event.type);
+    }
+
+    /**
+     * 提示被点击的标签名称
+     * @param {object} e 事件对象
+     */
+    function whichElement(e) {
+        var target;
+        if (!e) {
+            var e = window.event;
+        }
+        if (e.target) {
+            target = e.target;
+        } else if (e.srcElement) {
+            target.e.srcElement;
+        }
+        if (target.nodeType == 3) {
+            target = target.parentNode;
+        }
+        var tagName = target.tagName;
+        alert('点击了' + tagName + "元素");
+    }
+
+    /**
+     * 判断shift键是否被按下
+     * @param {object} event 事件对象
+     */
+    function isKeyPressed(event) {
+        if (event.shiftKey == 1) {
+            alert("The shift key was pressed!");
+        } else {
+            alert("The shift key was not pressed!");
+        }
+    }
+
+    /**
+     * 提示被按下键的unicode的值
+     * @param {object} event 事件对象
+     */
+    function whichKey(event) {
+        alert("unicode的值:" + event.keyCode);
+    }
+
+    /**
+     * 判断鼠标的哪个按键被按下了
+     * @param {object} event 事件对象
+     */
+    function whichButton(event) {
+        var btnNum = event.button;
+        if (btnNum == 2) {
+            alert("您点击了右键！");
+        } else if (btnNum == 1) {
+            alert("您点击了中键！");
+        } else if (btnNum == 0) {
+            alert("您点击了左键！");
+        } else {
+            alert("您点击了" + btnNum + "号键！");
+        }
+    }
+</script>
+</body>
+</html>

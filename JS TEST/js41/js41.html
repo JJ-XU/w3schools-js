@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript 拖拽</title>
+</head>
+<style type="text/css">
+    div {
+        position: absolute;
+        width: 150px;
+        height: 150px;
+        background-color: #C8FFFF;
+    }
+</style>
+<script>
+    /**
+     * @file JavaScript 拖拽
+     * @author 许文娟
+     * @copyright 2014-2017 海量云图（北京）数据技术有限公司
+     */
+
+    /**
+     * 拖拽方法
+     * @param {string} id 元素id
+     */
+    function drag(id) {
+        if (typeof id == "string") {
+            var obj = document.getElementById(id);
+            obj.origIndex = obj.style.zIndex;
+        }
+
+        /**
+         * 鼠标按下事件
+         * @param {obj} e 事件对象
+         */
+        obj.onmousedown = function (e) {
+            this.style.cursor = "move";
+            this.style.zIndex = 1000;
+            if (!e) {
+                e = window.event;
+            }
+            var x = e.clientX - document.body.scrollLeft - obj.offsetLeft;
+            var y = e.clientY - document.body.scrollTop - obj.offsetTop;
+            
+            /**
+             *鼠标移动事件
+             * @param {object} e 事件对象
+             */
+            document.onmousemove = function (e) {
+                if (!e) {
+                    e = window.event;
+                }
+                obj.style.left = e.clientX + document.body.scrollLeft - x + "px";
+                obj.style.top = e.clientY + document.body.scrollTop - y + "px";
+            }
+
+            /**
+             * 鼠标松开事件
+             */
+            document.onmouseup = function () {
+                document.onmousemove = null;
+                document.onmouseup = null;
+                obj.style.cursor = "normal";
+                obj.style.zIndex = obj.origIndex;
+            }
+        }
+    }
+</script>
+</head>
+<body>
+<div id="box" style="z-index: 10;"></div>
+<div id="box1" style="left:170px; background-color:#408080;"></div>
+<script>
+    drag("box");
+    drag("box1");
+</script>
+</body>
+</html>

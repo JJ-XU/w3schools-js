@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript DOM</title>
+</head>
+<body>
+<div id="picture">
+    <img src="yingwu.jpg" border="0" usemap="#parrot" alt="Parrot"/>
+</div>
+<map name="parrot" id="parrot">
+    <area shape="rect" coords="69,102,435,492" onMouseOver="writeText('我是小绿。')" nohref="nohref" alt="鹦鹉"/>
+    <area shape="rect" coords="435,60,935,500" onMouseOver="writeText('我是小红。')" nohref="nohref" alt="鹦鹉"/>
+</map>
+<p id="msg"></p>
+<script>
+    /**
+     * @file JavaScript
+     * @author 许文娟
+     * @copyright 2014-2017 海量云图（北京）数据技术有限公司
+     */
+
+    /**
+     * 提示信息
+     * @param {string} txt
+     */
+    function writeText(txt) {
+        document.getElementById('msg').innerHTML = txt;
+    }
+
+</script>
+</body>
+</html>

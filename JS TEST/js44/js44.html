@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript 查找字符串出现最多的字符及次数</title>
+</head>
+<body>
+<h1>字符串“aadhsufhwe1wqajsolasaajsasoqe”</h1>
+
+<p id="max-char"></p>
+
+<p id="max"></p>
+<script>
+    /**
+     * @file JavaScript 查找字符串出现最多的字符及次数
+     * @author 许文娟
+     * @copyright 2014-2017 海量云图（北京）数据技术有限公司
+     */
+
+    var str = "aadhsufhwe1wqajsolasaajsasoqe";
+    var obj = {};
+    for (var i = 0; i < str.length; i++) {
+        var char = str[i];
+        if (obj[char]) {//字符不是第一次出现
+            obj[char]++;//次数加一
+        } else {
+            obj[char] = 1;//字符第一次出现，次数记为1
+        }
+    }
+    console.log(obj);
+    var max = 0;//初始化最大次数
+    var maxChar = null;//初始化最大字符
+
+    /**
+     * 遍历对象obj查找字符串出现最多的字符及次数
+     */
+    for (var key in obj) {
+        if (max < obj[key]) {
+            max = obj[key];
+            maxChar = key;
+        }
+    }
+    document.getElementById('max-char').textContent = '出现最多的字符是：' + maxChar;
+    document.getElementById('max').textContent = '出现是次数：' + max;
+</script>
+</body>
+</html>

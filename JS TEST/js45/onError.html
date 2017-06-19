@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript onerror 事件</title>
+    <style>
+        #btn {
+            margin: 80px 130px;
+            width: 80px;
+            height: 30px;
+            border: none;
+            color: white;
+            outline: none;
+            background: deepskyblue;
+        }
+    </style>
+</head>
+<body>
+<input type="button" id="btn" onclick="message()" value="查看消息">
+<script>
+    /**
+     * @file JavaScript onerror 事件
+     * @author 许文娟
+     * @copyright 2014-2017 海量云图（北京）数据技术有限公司
+     */
+
+    onerror = handelErr;//使用 onerror 事件捕获网页中的错误
+    var txt = '';
+
+    /**
+     *获取错误的详细信息
+     * @param {string} msg 错误消息
+     * @param {string} url 发生错误的页面的url
+     * @param {string} l 发生错误的代码行
+     * @returns {boolean}
+     */
+    function handelErr(msg, url, l) {
+        txt = "本页中存在错误。\n\n";
+        txt += "错误：" + msg + "\n";
+        txt += "URL: " + url + "\n";
+        txt += "行：" + l + "\n\n";
+        txt += "点击“确定”继续。\n\n";
+        alert(txt);
+        return true
+    }
+
+    /**
+     * 弹出welcome提示
+     */
+    function message() {
+        adaddler("welcome!");//error
+    }
+</script>
+</body>
+</html>

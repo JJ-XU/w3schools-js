@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript for</title>
+</head>
+<body>
+<p></p>
+<script>
+    /**
+     * @file JavaScript for循环
+     * @author 许文娟
+     * @copyright 2014-2017 海量云图（北京）数据技术有限公司
+     */
+
+    var rolePermission = ["1", "2", "3", "4"];
+    var role = [
+        {"id": "1", "parent": "#", "text": "系统管理员"},
+        {"id": "2", "parent": "1", "text": "操作员"},
+        {"id": "3", "parent": "2", "text": "张三"},
+        {"id": "4", "parent": "2", "text": "李四"},
+        {"id": "5", "parent": "4", "text": "王五"},
+        {"id": "6", "parent": "2", "text": "李曼"}
+    ];
+    var count = 0;
+
+    /**
+     * 判断数组rolePermission中的元素是否等于数组role中的id属性的值
+     */
+    for (var i = 0; i < rolePermission.length; i++) {//判断条件存在两个操作数 1. 从list数组中查询length属性；2. 比较i与list.length的大小
+        for (var key in role) {
+            if (rolePermission[i] == role[key]["id"]) {
+                role[key]["state"] = {selected: true};
+            }
+            count++;
+        }
+    }
+    console.log(count);//输出循环次数
+
+    /**优化*/
+    for (var i = rolePermission.length; i >= 0; --i) {//只有一个操作数，数组长度始终保持在len里，1.比较i与list.length的大小
+        for (var key in role) {
+            if (rolePermission[i] == role[key]["id"]) {
+                role[key]["state"] = {selected: true};
+            }
+        }
+    }
+
+    /**
+     * 输出
+     */
+    document.getElementsByTagName("p")[0].textContent = JSON.stringify(role);
+</script>
+</body>
+</html>

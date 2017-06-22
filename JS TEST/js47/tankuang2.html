@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript 弹窗（2）</title>
+    <style>
+        #img {
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #img:hover {
+            opacity: 0.7;
+        }
+
+        .modal {
+            display: none;
+            z-index: 1;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .content {
+            width: 80%;
+            display: block;
+            margin: 5% auto;
+            max-width: 700px;
+        }
+
+        #caption {
+            width: 80%;
+            margin: auto;
+            display: block;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            height: 150px;
+            padding: 10px 0;
+        }
+
+        .content, #caption {
+            -webkit-animation-name: zoom;
+            -webkit-animation-duration: 0.6s;
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+
+        @-webkit-keyframes zoom {
+            from {
+                -webkit-transform: scale(0)
+            }
+            to {
+                -webkit-transform: scale(1)
+            }
+        }
+
+        @keyframes zoom {
+            from {
+                -webkit-transform: scale(0)
+            }
+            to {
+                -webkit-transform: scale(1)
+            }
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @media only screen and (max-width: 700px) {
+            .content {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<img src="img.jpg" alt="动漫" width="300px" height="200px" id="img">
+
+<div id="my-modal" class="modal">
+    <span class="close"
+          onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+    <img class="content" id="modal-img">
+
+    <div id="caption"></div>
+</div>
+<script>
+    /**
+     * @file JavaScript 弹窗（2）
+     * @author 许文娟
+     * @copyright 2014-2017 海量云图（北京）数据技术有限公司
+     */
+
+    var modal = document.getElementById('my-modal');//获取弹窗
+    var img = document.getElementById('img');
+    var modalImg = document.getElementById("modal-img");
+    var captionText = document.getElementById("caption");
+
+    /**
+     * 点击图片弹出大图
+     */
+    img.onclick = function () {
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        captionText.innerHTML = this.alt;
+    }
+    var close = document.getElementsByClassName("close")[0];//用于关闭弹窗
+
+    /**
+     * 关闭大图
+     */
+    close.onclick = function () {
+        modal.style.display = "none";
+    }
+</script>
+</body>
+</html>
